@@ -4,6 +4,7 @@ from .views import *
 app_name="FirstApp"
 
 urlpatterns = [
-    path('',index,name='index'),
+    path('', index, name='index'),
+    path('api', api, name='api'),
 ]
 

@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-    <h2>0915 실습</h2>
 
-    <p>장고 설치 및 프로젝트, 앱 생성</p>
+    <h1>{{ content }}<h1><br>
+
+    <h2>0915/0922 실습</h2>
+
+    <p>0915 장고 설치 및 프로젝트, 앱 생성</p>
+    <p>0922 url, 뷰, 모델 등 설정</p>
+
+    <a href="{% url 'FirstApp:api' %}">JsonReponse api함수</a>
 </body>
 </html>
