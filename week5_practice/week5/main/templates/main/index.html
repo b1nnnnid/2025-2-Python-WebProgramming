@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuksungID</title>
+</head>
+<body>
+    <h1>학생 목록</h1>
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>학과</th>
+            <th>학번</th> 
+        </tr>
+
+            {% for s in students %}
+        <tr>
+            <td>{{ s.name }} </td>
+            <td>{{ s.department }} </td>
+            <td>{{ s.student_id }} </td>
+        </tr>
+            {% empty %}
+        <tr>
+            <td colspan="3">No Data</td>
+        </tr>
+            {% endfor %}
+        
+    </table>
+
+    <h2>학생 정보 입력</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">등록</button>
+</body>
+</html>
