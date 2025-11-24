@@ -1,0 +1,260 @@
+/*
+ * 게시판 목록 및 작성 페이지 전용 스타일 시트
+ * 테마 색상: Primary Burgundy (#800020)
+ */
+
+ body { 
+    background-color: #f7f7f7; 
+    text-align: center;
+    padding: 2rem 0;
+    font-family: "Inter", sans-serif;
+}
+
+/* 템플릿의 <br> 태그를 무시하고 마진으로 간격 조절 */
+br {
+    display: none;
+}
+
+/* =================================
+ * 1. 상단 사용자 정보 및 폼 영역 (top-user-area)
+ * ================================= */
+
+/* 상단 정보 영역 컨테이너 */
+.top-user-area {
+    width: 70%;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    padding: 0;
+    
+    background-color: #FFFFFF;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* 최상단 헤더 (메인/닉네임/로그아웃) */
+.top-user-area .top-header-nav { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* 메인으로 링크 (좌측) */
+.top-user-area .top-header-nav a:first-child { 
+    color: #800020;
+    text-decoration: none;
+    font-weight: 600; 
+    font-size: 1rem;
+    transition: color 0.2s;
+    margin: 0;
+}
+.top-user-area .top-header-nav a:first-child:hover {
+    color: #A52A2A; 
+}
+
+/* 닉네임과 로그아웃을 묶는 그룹 (우측) */
+.user-meta-group-right { 
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* 닉네임 텍스트 스타일 */
+.top-user-area .nickname {
+    font-size: 0.95rem;
+    color: #4B5563;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* 로그아웃 버튼 스타일 */
+.top-user-area a[href*="logout"] {
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    background-color: #FEE2E2; 
+    color: #B91C1C; 
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: background-color 0.2s;
+}
+.top-user-area a[href*="logout"]:hover {
+    background-color: #FCA5A5;
+}
+
+/* HR 태그 처리 */
+.top-user-area hr {
+    display: none;
+}
+
+
+/* 게시판 제목 (h2) */
+.top-user-area h2 {
+    color: #1F2937;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1.5rem 1.5rem 1.5rem 1.5rem;
+    padding-top: 0;
+    border-top: none;
+    text-align: left;
+}
+
+/* 글 작성 폼 스타일 */
+.top-user-area form {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    text-align: left;
+}
+
+/* 폼 입력 필드 (제목, 내용) */
+.top-user-area input[type='text'], 
+.top-user-area textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.5rem;
+    transition: border-color 0.2s;
+}
+
+.top-user-area textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.top-user-area input[type='text']:focus,
+.top-user-area textarea:focus {
+    border-color: #800020;
+    outline: none;
+}
+
+/* 익명 체크박스 그룹 */
+.top-user-area .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+.top-user-area input[type='checkbox'] {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* 파일 입력 그룹 레이아웃 */
+.top-user-area .file-input-group {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 0;
+    border-top: 1px dashed #E5E7EB;
+    border-bottom: 1px dashed #E5E7EB;
+}
+
+.top-user-area .file-input-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #4B5563;
+}
+.top-user-area .file-input-line:last-child {
+    margin-bottom: 0;
+}
+
+.top-user-area input[type='file'] {
+    margin-left: 0.5rem;
+    display: inline-block;
+}
+
+/* 작성하기 버튼 (Submit) */
+.top-user-area input[type='submit'] {
+    cursor: pointer;
+    padding: 0.6rem 1.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #FFFFFF;
+    background-color: #800020;
+    float: right;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.top-user-area input[type='submit']:hover {
+    background-color: #A52A2A;
+    transform: translateY(-1px);
+}
+/* float 해제 */
+.top-user-area form::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* =================================
+ * 2. 게시글 목록 영역 (post-list-area)
+ * ================================= */
+
+/* 글 목록을 감싸는 컨테이너 */
+.post-list-area {
+    width: 70%;
+    max-width: 900px;
+    margin: 3rem auto 0 auto;
+    background-color: #FFFFFF;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: left;
+}
+
+/* 목록 항목 */
+.post-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed #E5E7EB;
+}
+.post-item:last-child {
+    border-bottom: none;
+}
+
+/* 제목 링크 */
+.post-item a {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1F2937;
+    text-decoration: none;
+    margin-bottom: 0.3rem;
+    transition: color 0.2s;
+}
+.post-item a:hover {
+    color: #800020;
+}
+
+/* 내용 요약 */
+.post-item p.content-preview {
+    font-size: 0.95rem;
+    color: #4B5563;
+    margin-bottom: 0.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+/* 시간 정보 (naturaltime) */
+.post-item span.time-info {
+    font-size: 0.8rem;
+    color: #9CA3AF;
+    display: block;
+    text-align: right;
+}
+
+/* 게시글이 없을 때 */
+.post-list-area p.empty-message {
+    text-align: center;
+    color: #9CA3AF;
+    font-style: italic;
+    padding: 1rem 0;
+}

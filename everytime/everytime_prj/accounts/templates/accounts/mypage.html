@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/MyPage.css'%}" />
+</head>
+<body>
+    <a href="{% url 'posts:main' %}">메인으로</a><br>
+    <h1>마이페이지</h1><br>
+    <br>
+    <hr>
+    <br>
+    <a href="{% url 'accounts:user-info' %}">내 정보</a><br/>
+    <a href="{% url 'accounts:mypost' %}">내 게시글</a><br/>
+    <a href="{% url 'accounts:myscrap' %}">저장된 게시물</a><br/>
+
+</body>
+</html>

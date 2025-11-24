@@ -1,0 +1,65 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="{% static 'css/CategoryPage.css'%}" />
+</head>
+<body>
+    
+    {% if request.user.is_authenticated %}
+    <div class="top-user-area">
+        
+        <div class="top-header-nav"> 
+            <a href="{% url 'posts:main' %}">메인으로</a>
+            <div class="user-meta-group-right"> 
+                <span class="nickname">{{request.user.nickname}} 님</span>
+                <a href="{% url 'accounts:logout' %}">로그아웃</a>
+            </div>
+        </div>
+        
+        <h2>{{ category.name }}</h2>
+        <form method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type='text' name='title' placeholder="제목 입력">
+            <textarea name="content" placeholder="내용 입력"></textarea>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" name="is_anonymous" id="is_anonymous_post">
+                <label for="is_anonymous_post">익명</label>
+            </div>
+            
+            <div class="file-input-group">
+                <div class="file-input-line">
+                    이미지 - <input type='file' name='image'>
+                </div>
+                <div class="file-input-line">
+                    동영상 - <input type='file' name='video'>
+                </div>
+            </div>
+            
+            <input type="submit" value="작성하기">
+        </form>
+        
+    </div> {% endif %}
+
+    <hr>
+    
+    <div class="post-list-area">
+        
+        {% for post in posts %}
+        <div class="post-item">
+            <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
+            <p class="content-preview">{{ post.content }}</p>
+            <span class="time-info">{{ post.created_at|naturaltime }}</span>
+        </div>
+        {% empty %}
+            <p class="empty-message">게시글이 없습니다.</p>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

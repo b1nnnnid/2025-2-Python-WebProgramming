@@ -1,0 +1,76 @@
+/*
+ * 마이페이지/메뉴 링크 전용 스타일
+ * 기존 버건디 테마 (#800020) 일관성 유지
+ */
+
+ body { 
+    background-color: #f7f7f7; 
+    text-align: center; 
+}
+
+/* **수정: 메인페이지 링크 (body a:first-child)에 .link-primary-burgundy 스타일 적용** */
+body a:first-child { 
+    /* Primary 링크 스타일 (.link-primary-burgundy) */
+    color: #800020; /* Primary Burgundy */
+    text-decoration: none;
+    font-weight: 600; 
+    
+    /* 가운데 정렬 */
+    display: block; 
+    /* 폼 스타일과의 일관성을 위해 1.5rem 마진 적용 */
+    margin: 1.5rem auto 0 auto; 
+    
+    /* 기존 버튼 모양 스타일 제거 */
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+/* **수정: 메인페이지 링크 호버 스타일 적용** */
+body a:first-child:hover {
+    text-decoration: underline;
+    color: #A52A2A; /* Light Burgundy on hover */
+    background: none;
+    box-shadow: none;
+    transform: none;
+}
+
+
+/* 나머지 메뉴 링크 (메인페이지 제외) 공통 스타일 유지 */
+/* 모든 a 태그 (메뉴 링크) 공통 스타일 */
+body a {
+    /* 기존의 버튼 스타일 유지 (메인페이지 링크는 :first-child로 오버라이드 됨) */
+    display: block; 
+    width: 25%; 
+    margin: 1rem auto; 
+    padding: 0.75rem 1rem; 
+    border-radius: 0.5rem; 
+    
+    /* 기본 텍스트 스타일 */
+    color: #1F2937; 
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600; 
+    
+    /* 배경 및 경계 */
+    background-color: #FFFFFF; 
+    border: 1px solid #D1D5DB; 
+    transition: all 0.2s ease-in-out;
+}
+
+/* 메인페이지를 제외한 나머지 링크의 호버 스타일 */
+body a:not(:first-child):hover {
+    border-color: #A52A2A; /* Light Burgundy */
+    box-shadow: 0 0 0 2px #80002050; 
+    transform: translateY(-1px); 
+}
+
+br {
+    display: none;
+}
+
+hr{
+    color: #800020;
+}

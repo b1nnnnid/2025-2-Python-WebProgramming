@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/MainPage.css'%}" />
+</head>
+<body>
+    <a href="{% url 'posts:category' slug='secret' %}">비밀게시판</a>
+    <a href="{% url 'posts:category' slug='freshman' %}">새내기게시판</a>
+    <a href="{% url 'posts:category' slug='free' %}">자유게시판</a><br><br>
+
+
+    <div class="main-header-container">
+    
+        <h1 class="main-logo-text">덕성 에브리타임</h1> 
+    
+        <div class="user-info-block"> 
+            {%if request.user.is_authenticated%}
+                <span>{{request.user.nickname}} 님, 환영합니다!</span>
+                <a href="{% url 'accounts:logout' %}">로그아웃</a>
+                <a href="{% url 'accounts:mypage' %}">마이페이지</a>
+            {%else%}
+                <a href="{% url 'accounts:login' %}">로그인</a>
+                <a href="{% url 'accounts:signup' %}">회원가입</a>
+            {%endif%}
+        </div>
+        
+    </div>
+    <br/>
+    <br/>
+    <hr>
+        {% load humanize %}
+
+    <h2><a href="{% url 'posts:category' 'secret' %}">비밀게시판</a></h2>
+    <ul>
+        {% for post in secret_posts %}
+            <li>
+                <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
+                <small> {{ post.created_at|naturaltime }}</small><br>
+                <small>댓글 {{ post.comments.count }}개 공감 {{ post.like.count }}개</small>
+            </li>
+        {% empty %}
+            <li>게시글이 없습니다.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2><a href="{% url 'posts:category' 'freshman' %}">새내기게시판</a></h2>
+    <ul>
+        {% for post in freshman_posts %}
+            <li>
+                <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
+                <small> {{ post.created_at|naturaltime }}</small><br>
+                <small>댓글 {{ post.comments.count }}개 공감 {{ post.like.count }}개</small>
+            </li>
+        {% empty %}
+            <li>게시글이 없습니다.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2><a href="{% url 'posts:category' 'free' %}">자유게시판</a></h2>
+    <ul>
+        {% for post in free_posts %}
+            <li>
+                <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
+                <small> {{ post.created_at|naturaltime }}</small><br>
+                <small>댓글 {{ post.comments.count }}개 공감 {{ post.like.count }}개</small>
+            </li>
+        {% empty %}
+            <li>게시글이 없습니다.</li>
+        {% endfor %}
+    </ul>

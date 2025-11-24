@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 수정</title>
+    <link rel="stylesheet" href="{% static 'css/UpdatePage.css'%}" />
+</head>
+<body>
+    
+    <div class="update-form-container">
+        <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-line">
+                <span class="form-label">제목</span>
+                <input type="text" name="title" value="{{ post.title }}">
+            </div>
+            
+            <div class="form-line">
+                <span class="form-label">내용</span>
+                <textarea name="content">{{ post.content }}</textarea>
+            </div>
+            
+            <div class="checkbox-line">
+                <span class="form-label">익명</span>
+                <input type="checkbox" name="is_anonymous" {% if post.is_anonymous %}checked{% endif %}>
+            </div>
+
+            <div class="form-line file-change-line">
+                <span class="file-label">이미지 변경</span>
+                
+                {% if post.image %}
+                    <div class="existing-media">
+                        기존 이미지 <img src="{{ post.image.url }}" width="200" alt="기존 이미지">
+                    </div>
+                {% endif %}
+                
+                <input type="file" name="image">
+            </div>
+
+            <div class="form-line file-change-line">
+                <span class="file-label">비디오 변경</span>
+                
+                {% if post.video %}
+                    <div class="existing-media">
+                        기존 비디오
+                        <video width="320" height="240" controls>
+                            <source src="{{ post.video.url }}" type="video/mp4">
+                        </video>
+                    </div>
+                {% endif %}
+                
+                <input type="file" name="video">
+            </div>
+
+            <div class="update-submit-line">
+                <input type="submit" value="수정하기">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

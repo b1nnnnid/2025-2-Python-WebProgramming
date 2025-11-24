@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/UserInfoPage.css'%}" />
+
+</head>
+<body>
+    <a href="{% url 'posts:main' %}">홈으로</a>
+    <h1>내 정보</h1>
+    <br><hr><br>
+
+    사용자명<p> {{request.user.username}}</p>
+    대학교<p> {{request.user.university}}</p>
+    email<p> {{request.user.email}}</p>
+    닉네임<p> {{request.user.nickname}}</p>
+
+</body>
+</html>

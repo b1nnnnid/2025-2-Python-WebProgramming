@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="{% static 'css/SignupPage.css'%}" />
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form method="POST" action="{% url 'accounts:signup'%}">
+        {%csrf_token%}
+        
+        <p>
+            <label for="{{ form.university.id_for_label }}">학교</label> 
+            {{form.university}}
+            {{form.university.errors}}
+        </p>
+
+        <p>
+            <label for="{{ form.email.id_for_label }}">이메일</label>
+            {{form.email}}
+            {{form.email.errors}}
+        </p>
+
+        <p>
+            <label for="{{ form.nickname.id_for_label }}">닉네임</label>
+            {{form.nickname}}
+            {{form.nickname.errors}}
+        </p>
+
+        <p>
+            <label for="{{ form.username.id_for_label }}">사용자 이름</label>
+            {{form.username}}
+            {{form.username.errors}}
+        </p>
+
+        <p>
+            <label for="{{ form.password1.id_for_label }}">비밀번호</label>
+            {{form.password1}}
+            {{form.password1.errors}}
+        </p>
+
+        <p>
+            <label for="{{ form.password2.id_for_label }}">비밀번호 확인</label>
+            {{form.password2}}
+            {{form.password2.errors}}
+        </p>
+        
+        <button type="submit">회원가입</button>
+    </form>
+    
+    <a href="{% url 'accounts:login' %}" class="link-primary-burgundy">
+        이미 회원이신가요?
+    </a>
+
+</body>
+</html>

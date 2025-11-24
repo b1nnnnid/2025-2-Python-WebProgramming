@@ -1,0 +1,124 @@
+/*
+ * 내가 작성한 글 목록 페이지 (Mypost) 전용 스타일 시트
+ * 제목과 내용 구분에 초점
+ */
+
+ body { 
+    background-color: #f7f7f7; 
+    text-align: center; 
+    padding: 2rem 0;
+    font-family: "Inter", sans-serif;
+}
+
+/* =================================
+ * 전역 요소 및 제목 스타일
+ * ================================= */
+
+/* H2 (페이지 메인 제목) */
+h2 {
+    color: #1F2937;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* 홈으로 링크 (상단) */
+body > a:first-child { 
+    color: #800020; 
+    text-decoration: none;
+    font-weight: 600; 
+    display: block; 
+    width: fit-content; 
+    margin: 0 auto 2rem auto;
+    text-align: center; 
+    transition: color 0.2s;
+}
+
+body > a:first-child:hover {
+    color: #A52A2A; 
+    text-decoration: underline;
+}
+
+/* =================================
+ * 글 목록 항목 스타일 (제목과 내용 분리)
+ * ================================= */
+
+/* 글 제목 (H2)을 감싸는 컨테이너 */
+/* 두 번째 H2부터 구분선 적용 및 제목만 중앙 정렬 */
+h2:nth-of-type(n+2) {
+    /* 기존 구분선 유지 */
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid #D1D5DB; /* Light Gray Line */
+    margin-bottom: 0.5rem; /* 제목과 내용 박스 간 간격 조정 */
+}
+
+/* 글 제목 링크 스타일 **(강조)** */
+h2 a {
+    color: #800020; /* 버건디 색상 */
+    text-decoration: none;
+    font-size: 1.5rem; /* **제목 크기 확대** */
+    font-weight: 800; /* **글꼴 굵기 강조** */
+    transition: color 0.2s;
+}
+
+h2 a:hover {
+    color: #A52A2A;
+    text-decoration: underline;
+}
+
+/* 글 내용 및 메타 정보 (p 태그)를 묶는 컨테이너 스타일 */
+/* HTML에 별도 div가 없으므로, p 태그들이 모여서 하나의 구획처럼 보이도록 스타일링 */
+.post-content-group {
+    /* 각 글 항목의 내용 박스 역할을 수행하도록 명시적으로 설정 */
+    display: inline-block; 
+    width: 60%; /* 글 목록 항목의 최대 너비를 제한 */
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto; /* 상하 간격 추가 및 중앙 정렬 */
+    padding: 1rem 1.5rem;
+    
+    background-color: #FFFFFF; /* 흰색 배경 */
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* 은은한 그림자 */
+    text-align: left; /* 내부 텍스트는 좌측 정렬 */
+}
+
+/* 글 내용 및 메타 정보 (p 태그) */
+p {
+    /* p 태그의 중앙 정렬은 .post-content-group에서 처리 */
+    margin: 0;
+    padding: 0;
+    width: 100%; /* 부모 .post-content-group 너비 사용 */
+    color: #4B5563;
+    line-height: 1.6;
+}
+
+/* 글 내용 */
+.post-content-group p:nth-of-type(1) {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* 작성일, 작성자 정보 (메타 정보) */
+.post-content-group p:nth-of-type(2), 
+.post-content-group p:nth-of-type(3) {
+    font-size: 0.85rem;
+    color: #6B7280; 
+    text-align: right; /* 메타 정보는 오른쪽 정렬 */
+    margin-top: 0.25rem;
+}
+
+/* 작성된 글이 없을 때 메시지 */
+body > p:last-child {
+    font-size: 1.125rem;
+    color: #9CA3AF;
+    margin-top: 3rem;
+    text-align: center;
+    width: auto;
+}
+
+
+hr{
+    color: #800020;
+}

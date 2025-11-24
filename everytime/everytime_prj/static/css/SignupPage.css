@@ -1,0 +1,146 @@
+/*
+ * 회원가입 템플릿 전용 스타일 시트 (버건디 테마)
+ * 테마 색상: Primary Burgundy (#800020)
+ */
+
+ body { 
+    background-color: #f7f7f7; 
+}
+
+/* =================================
+ * 전역 요소 (h2, 링크) 가운데 정렬
+ * ================================= */
+
+h1 {
+    /* 추가: h2 태그 가운데 정렬 */
+    text-align: center; 
+    margin-bottom: 1.5rem; /* 다른 요소와의 간격 조정 */
+}
+
+
+/* =================================
+ * Django 폼 요소 오버라이드 스타일
+ * ================================= */
+
+/* 폼 필드 그룹 간의 간격 및 가운데 정렬 */
+form p {
+    margin-bottom: 1.5rem; /* mb-6 (간격 확장) */
+    text-align: center; /* p 태그 내부 텍스트 가운데 정렬 */
+}
+
+/* 레이블 스타일 (시인성 강화 및 중앙 정렬) */
+form label {
+    display: block;
+    font-size: 0.9rem; /* text-sm 보다 약간 크게 */
+    font-weight: 600; /* font-bold로 변경하여 강조 */
+    color: #800020; /* **Primary Burgundy 색상 적용하여 강조** */
+    margin-bottom: 0.4rem; /* 간격 조정 */
+    
+    /* ** 추가: 입력 필드와 동일한 너비로 중앙 정렬 ** */
+    width: 20%; /* 입력 필드와 너비 통일 */
+    margin: 0.4rem auto 0.4rem auto; /* 상하 마진 및 좌우 자동 마진 */
+    text-align: left; /* 텍스트는 좌측 정렬 유지 (필드 위에 정렬되도록) */
+}
+
+/* 입력 필드 (text, password, email) 및 select 박스 공통 스타일 (크기 조정 및 가운데 정렬) */
+form input[type="text"], 
+form input[type="password"],
+form input[type="email"],
+form select,
+form textarea {
+    width: 20%; 
+    padding: 0.4rem 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease-in-out;
+    outline: none;
+    min-height: 20px;
+    font-size: 1rem;
+
+    /* 가운데 정렬 */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Select 박스 커스텀 스타일 (버건디 화살표) */
+form select {
+    appearance: none; 
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23800020"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* 포커스 시 스타일 (Primary Burgundy #800020 사용) */
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #800020; 
+    box-shadow: 0 0 0 2px #80002050; /* 포커스 링 그림자 강조 */
+}
+
+/* 에러 메시지 목록 스타일 */
+.errorlist {
+    color: #ff0000; /* 붉은색 에러 메시지 */
+    font-size: 0.75rem; /* text-xs */
+    list-style: none;
+    padding-left: 0;
+    
+    /* 가운데 정렬 */
+    width: 20%; /* 입력 필드와 동일한 너비로 제한 */
+    margin: 0.25rem auto 0 auto; 
+    text-align: left; /* 에러 텍스트는 좌측 정렬 유지 */
+}
+
+/* 폼 필드와 레이블을 묶어주는 스타일 (현재 사용되지 않더라도 유지) */
+.form-field-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* =================================
+ * 버튼 및 링크 스타일 추가
+ * ================================= */
+
+button[type="submit"] {
+    /* Tailwind 클래스에서 가져온 시각적 스타일 */
+    width: 30%; /* 사용자 요청 유지 */
+    padding: 0.75rem 1rem; /* py-3 */
+    border-radius: 0.5rem; /* rounded-lg */
+    background-color: #800020; /* primary-burgundy */
+    color: #FFFFFF; /* text-white */
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 700; /* font-bold */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg 근사치 */
+    border: none;
+    line-height: 1.25; 
+
+    /* 기존 스타일 유지 */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    
+    /* 가운데 정렬 */
+    display: block; /* margin: auto를 위해 블록 요소로 */
+    margin: 1.5rem auto 0 auto; /* 상단 마진을 p 태그와 일관되게 조정 */
+}
+
+button[type="submit"]:hover {
+    background-color: #A52A2A; /* light-burgundy */
+    transform: scale(1.01); /* 약간 확대 */
+}
+
+/* Primary 링크 스타일 */
+.link-primary-burgundy {
+    color: #800020; /* Primary Burgundy */
+    text-decoration: none;
+    font-weight: 600; 
+    
+    /* 가운데 정렬 */
+    display: block; 
+    margin: 1.5rem auto 0 auto; /* 상단 마진을 p 태그와 일관되게 조정 */
+    text-align: center; /* 링크의 텍스트 자체를 중앙 정렬 */
+}
+
+.link-primary-burgundy:hover {
+    text-decoration: underline;
+    color: #A52A2A; /* Light Burgundy on hover */
+}

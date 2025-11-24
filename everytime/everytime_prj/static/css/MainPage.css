@@ -1,0 +1,270 @@
+/*
+ * 메인 페이지/대시보드 전용 스타일 시트
+ * 테마 색상: Primary Burgundy (#800020)
+ */
+
+ body { 
+    background-color: #f7f7f7; 
+    text-align: center; /* 전체 페이지 중앙 정렬을 위한 기본 설정 */
+    padding: 2rem 0;
+    font-family: "Inter", sans-serif;
+}
+
+/* 템플릿의 <br> 태그를 무시하고 마진으로 간격 조절 */
+br {
+    display: none;
+}
+
+/* =================================
+ * 1. 상단 카테고리 링크 (탭 메뉴)
+ * ================================= */
+
+/* 게시판 카테고리 링크 (비밀, 새내기, 자유) */
+body > a:nth-child(-n+3) { 
+    display: inline-block; 
+    text-decoration: none;
+    font-weight: 600; 
+    font-size: 1.05rem;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem 2rem 0.5rem; /* 중앙 정렬 유지하며 간격 */
+    
+    background-color: #FEE2E2; 
+    color: #B91C1C;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+body > a:nth-child(-n+3):hover {
+    background-color: #FEE2E2; 
+    color: #B91C1C;
+}
+
+
+/* =================================
+ * 2. 사용자 정보 및 인증/마이페이지 링크
+ * ================================= */
+
+/* 사용자 정보 및 버튼을 담는 컨테이너 (HTML에 .user-info-block div가 필요함) */
+.user-info-block {
+    display: block;
+    width: 60%; 
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    padding: 1.5rem;
+    
+    background-color: #FFFFFF;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    text-align: right; /* 정보 및 버튼은 우측에 배치 */
+}
+
+/* 닉네임 텍스트 스타일 */
+.user-info-block span {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 1rem;
+    text-align: right;
+}
+
+/* 로그인/로그아웃/마이페이지 버튼/링크 공통 */
+.user-info-block a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+/*
+ * 메인 페이지/대시보드 전용 스타일 시트 (로고 추가)
+ */
+
+/* =================================
+ * 전역 로고 및 사용자 정보 컨테이너
+ * ================================= */
+
+/* 로고와 사용자 정보 블록을 감싸고 중앙 정렬하는 새로운 컨테이너 */
+.main-header-container {
+    display: flex; /* 내부 요소를 한 줄에 배치 */
+    justify-content: center; /* 전체 요소를 중앙 정렬 */
+    align-items: center;
+    width: 90%; /* 화면 너비 확장 (조정 가능) */
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: 0 auto 3rem auto;
+    gap: 2rem; /* 로고와 사용자 정보 블록 사이의 간격 */
+}
+
+/* 1. 커다란 로고 텍스트 스타일 */
+.main-logo-text {
+    font-size: 2.5rem; /* 크기 확대 */
+    font-weight: 900; /* 매우 굵게 */
+    color: #800020; /* Primary Burgundy 색상 */
+    margin: 0;
+    padding: 0;
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+
+/* 2. Django 폼 요소 오버라이드 스타일 (user-info-block) */
+.user-info-block {
+    /* 기존 스타일 유지 (로고와 균형을 맞추기 위해 너비 조정) */
+    display: flex; /* 내부 요소 (닉네임, 버튼)를 한 줄에 배치 */
+    align-items: center;
+    justify-content: flex-end; /* 닉네임과 버튼을 우측에 배치 */
+    
+    /* 너비는 콘텐츠에 맞게 조정하거나 명시적으로 설정 가능 */
+    width: auto; 
+    padding: 1rem 1.5rem;
+    
+    background-color: #FFFFFF;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    text-align: right;
+    
+    /* 내부 마진을 위해 margin-left 제거 */
+    margin: 0; 
+}
+
+/* 닉네임 텍스트 */
+.user-info-block span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin-right: 1.5rem; /* 버튼과의 간격 */
+    white-space: nowrap;
+}
+
+/* 로그인/로그아웃/마이페이지 버튼/링크 공통 */
+.user-info-block a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+/* 로그아웃/로그인 버튼 (기본 액션) */
+.user-info-block a:nth-of-type(1) { 
+    background-color: #FEE2E2; 
+    color: #B91C1C; 
+}
+.user-info-block a:nth-of-type(1):hover {
+    background-color: #FCA5A5;
+}
+
+/* 마이페이지/회원가입 버튼 (Primary 버건디 액션) */
+.user-info-block a:nth-of-type(2) {
+    background-color: #800020; 
+    color: #FFFFFF;
+}
+.user-info-block a:nth-of-type(2):hover {
+    background-color: #A52A2A;
+    transform: translateY(-1px);
+}
+
+/* HR 구분선 재설정 */
+hr {
+    border: none;
+    border-top: 1px solid #D1D5DB;
+    width: 60%;
+    max-width: 800px;
+    margin: 3rem auto 3rem auto;
+}
+
+/* =================================
+ * 3. 게시판별 글 목록 섹션
+ * ================================= */
+
+/* 각 게시판 섹션 제목 (h2) */
+h2 {
+    color: #1F2937;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 2rem auto 0.5rem auto;
+    width: 60%;
+    max-width: 800px;
+    text-align: left; /* 좌측 정렬 */
+}
+
+/* 게시판 제목 링크 (비밀게시판 등) */
+h2 a {
+    color: #800020;
+    text-decoration: none;
+}
+h2 a:hover {
+    text-decoration: underline;
+    color: #A52A2A;
+}
+
+
+/* 게시글 목록 (ul) 카드 형태 */
+ul {
+    list-style: none;
+    padding: 0;
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    background-color: #FFFFFF;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* 목록 항목 (li) */
+li {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+    text-align: left;
+    display: flex; /* 제목과 메타 정보 분리를 위해 flex 사용 */
+    flex-wrap: wrap;
+    justify-content: space-between; /* 제목 좌측, 메타 정보 우측 */
+    align-items: center;
+}
+li:last-child {
+    border-bottom: none;
+}
+
+/* 게시글 제목 링크 */
+li a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    text-decoration: none;
+    flex-grow: 1; 
+    margin-right: 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+li a:hover {
+    color: #800020;
+}
+
+/* 메타 정보 (작성 시간, 댓글 수, 공감 수) */
+li small {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+/* 게시글이 없을 때 */
+ul li:only-child { 
+    color: #9CA3AF;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9rem;
+    display: block; 
+    justify-content: center;
+}
+
+hr {
+    color: #800020;
+}
