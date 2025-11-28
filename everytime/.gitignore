@@ -181,3 +181,7 @@ cython_debug/
 
 # google cloud vision
 service_account.json
+
+.jpg
+.png
+.mp4

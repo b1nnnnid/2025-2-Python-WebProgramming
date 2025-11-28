@@ -1,11 +1,11 @@
 /*
- * 메인 페이지/대시보드 전용 스타일 시트
+ * 메인 페이지/대시보드 전용 스타일 시트 (최종 통합본)
  * 테마 색상: Primary Burgundy (#800020)
  */
 
- body { 
+body { 
     background-color: #f7f7f7; 
-    text-align: center; /* 전체 페이지 중앙 정렬을 위한 기본 설정 */
+    text-align: center;
     padding: 2rem 0;
     font-family: "Inter", sans-serif;
 }
@@ -16,161 +16,177 @@ br {
 }
 
 /* =================================
- * 1. 상단 카테고리 링크 (탭 메뉴)
+ * 1. 상단 네비게이션 (카테고리 링크 + 사용자 정보)
  * ================================= */
 
-/* 게시판 카테고리 링크 (비밀, 새내기, 자유) */
-body > a:nth-child(-n+3) { 
+.top-nav-row {
+    width: 70%;
+    max-width: 1200px; /* 메인 컨텐츠와 동일한 최대 너비 */
+    margin: 0 auto 2rem auto; /* 컨테이너 중앙 정렬 및 하단 여백 */
+    display: flex;
+    justify-content: flex-end; /* 기본적으로 모든 내용을 우측으로 밀어냅니다. */
+    align-items: flex-start;
+    position: relative; /* 자식 요소의 absolute 위치 지정을 위한 기준점 */
+    height: 3rem; /* 높이 확보 */
+}
+
+/* 카테고리 링크를 중앙에 배치 */
+.category-links-wrapper {
+    position: absolute; /* .top-nav-row를 기준으로 위치 지정 */
+    left: 50%;
+    transform: translateX(-50%); /* 정확한 중앙 정렬 */
+    white-space: nowrap; 
+    margin-top: 0.5rem; /* 수직 정렬 조정 */
+}
+
+/* 게시판 카테고리 링크 스타일 */
+.category-links-wrapper a { /* 기존 body > a:nth-child(-n+3) 셀렉터 대체 */
     display: inline-block; 
     text-decoration: none;
     font-weight: 600; 
     font-size: 1.05rem;
+    color: #B91C1C;
     padding: 0.5rem 1rem;
-    margin: 0 0.5rem 2rem 0.5rem; /* 중앙 정렬 유지하며 간격 */
+    margin: 0 0.5rem; 
     
     background-color: #FEE2E2; 
-    color: #B91C1C;
     border-radius: 0.5rem;
     transition: all 0.2s ease-in-out;
 }
 
-body > a:nth-child(-n+3):hover {
-    background-color: #FEE2E2; 
+.category-links-wrapper a:hover {
+    background-color: #FCA5A5;
     color: #B91C1C;
 }
 
-
 /* =================================
- * 2. 사용자 정보 및 인증/마이페이지 링크
+ * 2. 메인 헤더 컨테이너 (로고, 검색)
  * ================================= */
 
-/* 사용자 정보 및 버튼을 담는 컨테이너 (HTML에 .user-info-block div가 필요함) */
-.user-info-block {
-    display: block;
-    width: 60%; 
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
-    padding: 1.5rem;
-    
-    background-color: #FFFFFF;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-    text-align: right; /* 정보 및 버튼은 우측에 배치 */
-}
-
-/* 닉네임 텍스트 스타일 */
-.user-info-block span {
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 1rem;
-    text-align: right;
-}
-
-/* 로그인/로그아웃/마이페이지 버튼/링크 공통 */
-.user-info-block a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
-    border-radius: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-/*
- * 메인 페이지/대시보드 전용 스타일 시트 (로고 추가)
- */
-
-/* =================================
- * 전역 로고 및 사용자 정보 컨테이너
- * ================================= */
-
-/* 로고와 사용자 정보 블록을 감싸고 중앙 정렬하는 새로운 컨테이너 */
 .main-header-container {
-    display: flex; /* 내부 요소를 한 줄에 배치 */
-    justify-content: center; /* 전체 요소를 중앙 정렬 */
-    align-items: center;
-    width: 90%; /* 화면 너비 확장 (조정 가능) */
-    max-width: 1200px; /* 최대 너비 설정 */
+    /* 기존 스타일 유지: 로고와 검색창을 가로로 배치하고 중앙 정렬 */
+    display: flex; 
+    flex-direction: row; 
+    
+    justify-content: center;
+    align-items: center; 
+    
+    width: 90%; 
+    max-width: 1200px;
     margin: 0 auto 3rem auto;
-    gap: 2rem; /* 로고와 사용자 정보 블록 사이의 간격 */
+    gap: 1rem; 
 }
 
-/* 1. 커다란 로고 텍스트 스타일 */
+/* 1-1. 커다란 로고 텍스트 스타일 */
 .main-logo-text {
-    font-size: 2.5rem; /* 크기 확대 */
-    font-weight: 900; /* 매우 굵게 */
-    color: #800020; /* Primary Burgundy 색상 */
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #800020; 
     margin: 0;
     padding: 0;
-    white-space: nowrap; /* 줄바꿈 방지 */
+    white-space: nowrap;
+    
+    align-self: center; 
 }
 
-
-/* 2. Django 폼 요소 오버라이드 스타일 (user-info-block) */
-.user-info-block {
-    /* 기존 스타일 유지 (로고와 균형을 맞추기 위해 너비 조정) */
-    display: flex; /* 내부 요소 (닉네임, 버튼)를 한 줄에 배치 */
+/* 1-2. 검색 폼 (Search Form) */
+.search-form {
+    display: flex; 
+    justify-content: center; 
     align-items: center;
-    justify-content: flex-end; /* 닉네임과 버튼을 우측에 배치 */
     
-    /* 너비는 콘텐츠에 맞게 조정하거나 명시적으로 설정 가능 */
-    width: auto; 
-    padding: 1rem 1.5rem;
+    width: 350px;
+    max-width: 50%;
+    margin: 0; 
     
     background-color: #FFFFFF;
+    border: 2px solid #D1D5DB; 
     border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-    text-align: right;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* =================================
+ * 3. 사용자 정보 블록 (우측 상단 디자인 재구성)
+ * ================================= */
+
+ .user-info-block {
+    /* 기존 위치 설정 유지 */
+    position: absolute;
+    right: 0;
+    top: -1.5rem;
+    z-index: 50;
+
+    /* 크기 고정 및 내용물에 맞게 최소화 */
+    display: inline-flex; /* flex 컨테이너를 내용물 크기만큼만 만듦 */
+    flex-direction: row;
+    align-items: center; /* 수직 정렬을 중앙으로 조정 */
+    width: auto; /* 내용물 크기에 맞게 너비 자동 조정 */
+    min-width: 0; /* 불필요한 최소 너비 제어 */
     
-    /* 내부 마진을 위해 margin-left 제거 */
-    margin: 0; 
-}
-
-/* 닉네임 텍스트 */
-.user-info-block span {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #374151;
-    margin-right: 1.5rem; /* 버튼과의 간격 */
-    white-space: nowrap;
-}
-
-/* 로그인/로그아웃/마이페이지 버튼/링크 공통 */
-.user-info-block a {
-    display: inline-block;
     padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
+    
+    /* 디자인 유지 */
+    background-color: #FFFFFF;
     border-radius: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+
+/* 환영 메시지 텍스트 스타일 */
+.user-info-block span { 
+    font-size: 0.95rem; 
+    font-weight: 500;
+    color: #374151;
+    /* 텍스트와 버튼을 분리하기 위한 패딩 */
+    /* padding: 1.5rem 1.5rem 1.5rem 2rem; */
+    align-self: left;
+    
+}
+
+/* 버튼 스택 컨테이너 */
+.user-info-block .button-stack {
+    display: flex;
+    flex-direction: row;
+    height: 100%; 
+    border-left: 1px solid #D1D5DB; /* 텍스트와 버튼을 구분하는 얇은 선 */
+}
+
+/* 빨간색/버건디 버튼 공통 스타일 */
+.user-info-block a {
+    display: block; 
+    text-align: center;
+    width: 5.0rem; /* 버튼 너비 고정 */
+    padding: 0.5rem 0; 
+    
+    font-size: 0.9rem; 
+    font-weight: 600;
     text-decoration: none;
-    transition: background-color 0.2s, transform 0.2s;
+    color: white; 
+    background-color: #800020; /* 기본 버건디 */
+    transition: background-color 0.2s;
+    line-height: 1.2;
+    border-radius: 0.5rem; 
 }
 
-/* 로그아웃/로그인 버튼 (기본 액션) */
-.user-info-block a:nth-of-type(1) { 
-    background-color: #FEE2E2; 
-    color: #B91C1C; 
-}
-.user-info-block a:nth-of-type(1):hover {
-    background-color: #FCA5A5;
+/* '로그아웃'과 '로그인' (스택의 위쪽 버튼) */
+.user-info-block .logout-link,
+.user-info-block .login-link {
+    background-color: #A92D49; /* 상단 버튼은 약간 더 밝은 빨강 */
 }
 
-/* 마이페이지/회원가입 버튼 (Primary 버건디 액션) */
-.user-info-block a:nth-of-type(2) {
-    background-color: #800020; 
-    color: #FFFFFF;
-}
-.user-info-block a:nth-of-type(2):hover {
-    background-color: #A52A2A;
-    transform: translateY(-1px);
+/* '마이페이지'와 '회원가입' (스택의 아래쪽 버튼) */
+.user-info-block .mypage-link,
+.user-info-block .signup-link {
+    background-color: #800020;
 }
 
-/* HR 구분선 재설정 */
+/* =================================
+ * 3. 게시판별 글 목록 섹션
+ * ================================= */
+
 hr {
     border: none;
     border-top: 1px solid #D1D5DB;
@@ -178,10 +194,6 @@ hr {
     max-width: 800px;
     margin: 3rem auto 3rem auto;
 }
-
-/* =================================
- * 3. 게시판별 글 목록 섹션
- * ================================= */
 
 /* 각 게시판 섹션 제목 (h2) */
 h2 {
@@ -191,7 +203,7 @@ h2 {
     margin: 2rem auto 0.5rem auto;
     width: 60%;
     max-width: 800px;
-    text-align: left; /* 좌측 정렬 */
+    text-align: left;
 }
 
 /* 게시판 제목 링크 (비밀게시판 등) */
@@ -222,9 +234,9 @@ li {
     padding: 0.75rem 1.5rem;
     border-bottom: 1px solid #F3F4F6;
     text-align: left;
-    display: flex; /* 제목과 메타 정보 분리를 위해 flex 사용 */
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* 제목 좌측, 메타 정보 우측 */
+    justify-content: space-between;
     align-items: center;
 }
 li:last-child {
@@ -265,6 +277,52 @@ ul li:only-child {
     justify-content: center;
 }
 
-hr {
-    color: #800020;
+.user-info-block {
+    position: fixed; /* 뷰포트에 고정 */
+    top: 20px;       /* 상단에서 20px */
+    right: 20px;     /* 오른쪽에서 20px */
+    z-index: 1000;   /* 다른 요소 위로 */
+
+    /* (이하 기존 user-info-block 디자인 속성 유지) */
+    display: flex; 
+    align-items: left;
+    justify-content: flex-start; 
+    width: auto; 
+; 
+    background-color: #FFFFFF;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    gap: 0.5rem; 
+}
+
+/* Primary 링크 스타일 */
+.footer-links-container {
+    color: #800020; /* Primary Burgundy */
+    text-decoration: none;
+    font-weight: 600; 
+    
+    /* 가운데 정렬 */
+    display: block; 
+    margin: 1.5rem auto 0 auto; /* 상단 마진을 p 태그와 일관되게 조정 */
+    text-align: center; /* 링크의 텍스트 자체를 중앙 정렬 */
+}
+
+.footer-links-container {
+    display: flex;
+    justify-content: center; /* 링크들을 중앙 정렬 */
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid #e0e0e0;
+}
+    
+.footer-links-container a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+    
+.footer-links-container a:hover {
+    color: #a00; /* 학교 상징색과 비슷한 색으로 hover 효과 */
 }

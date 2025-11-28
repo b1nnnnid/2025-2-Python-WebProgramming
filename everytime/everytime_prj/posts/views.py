@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import *
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 def main(request):
@@ -118,3 +119,23 @@ def scrap(request, post_id):
     else:
         user.scrapped_posts.add(post)
     return redirect('posts:detail', post_id)
+
+@login_required
+def search(request):
+    query = request.GET.get('q') 
+    search_results = Post.objects.none() 
+
+    if query:
+        # 1. 모든 게시판 대상
+        # 2. Q 객체를 사용하여 제목(title) 또는 내용(content)에서 검색어를 포함하는지 확인
+        #    __icontains는 대소문자를 구분하지 않고 해당 문자열이 포함되었는지 확인
+        search_results = Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        ).order_by('-created_at') # 최신순으로 정렬
+        
+    context = {
+        'query': query,
+        'search_results': search_results
+    }
+    
+    return render(request, 'posts/search_results.html', context)

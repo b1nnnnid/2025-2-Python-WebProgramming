@@ -6,37 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/MainPage.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/SearchForm.css'%}" />
 </head>
 <body>
-    <a href="{% url 'posts:category' slug='secret' %}">비밀게시판</a>
-    <a href="{% url 'posts:category' slug='freshman' %}">새내기게시판</a>
-    <a href="{% url 'posts:category' slug='free' %}">자유게시판</a><br><br>
-
-
-    <div class="main-header-container">
-    
-        <h1 class="main-logo-text">덕성 에브리타임</h1> 
-    
-        <div class="user-info-block"> 
-            {%if request.user.is_authenticated%}
-                <span>{{request.user.nickname}} 님, 환영합니다!</span>
-                <a href="{% url 'accounts:logout' %}">로그아웃</a>
-                <a href="{% url 'accounts:mypage' %}">마이페이지</a>
-            {%else%}
-                <a href="{% url 'accounts:login' %}">로그인</a>
-                <a href="{% url 'accounts:signup' %}">회원가입</a>
-            {%endif%}
-        </div>
+    <!-- 1. 상단 네비게이션: 카테고리 링크와 사용자 정보 (top-nav-row에 의해 분리됨) -->
+        <div class="top-nav-row">
+                <!-- 카테고리 링크 (CSS에서 중앙 정렬) -->
+                <div class="category-links-wrapper">
+                    <a href="{% url 'posts:category' slug='secret' %}">비밀게시판</a>
+                    <a href="{% url 'posts:category' slug='freshman' %}">새내기게시판</a>
+                    <a href="{% url 'posts:category' slug='free' %}">자유게시판</a>
+                </div><br>
         
-    </div>
-    <br/>
-    <br/>
+                <!-- 사용자 정보/로그인/회원가입 블록 -->
+                <div class="user-info-block"> 
+                    {%if request.user.is_authenticated%}
+                        <span>{{request.user.nickname}} 님, 환영합니다!</span>
+                        <a href="{% url 'accounts:logout' %}">로그아웃</a>
+                        <a href="{% url 'accounts:mypage' %}">마이페이지</a>
+                    {%else%}
+                        <a href="{% url 'accounts:login' %}">로그인</a>
+                        <a href="{% url 'accounts:signup' %}">회원가입</a>
+                    {%endif%}
+                </div>
+            </div>
+        
+            <!-- 2. 메인 헤더 컨테이너: 로고와 검색 폼 (CSS에서 가로 정렬) -->
+            <div class="main-header-container">
+            
+                <h1 class="main-logo-text">덕성 에브리타임</h1> 
+                
+                <!-- 검색 폼 -->
+                <form class="search-form" method="GET" action="{% url 'posts:search' %}">
+                    <input type="search" name="q" placeholder="제목이나 내용을 검색하세요" required>
+                    <button type="submit">검색</button>
+                </form>
+            </div>
     <hr>
         {% load humanize %}
 
     <h2><a href="{% url 'posts:category' 'secret' %}">비밀게시판</a></h2>
     <ul>
-        {% for post in secret_posts %}
+        {% for post in secret_posts|slice:":3" %}
             <li>
                 <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
                 <small> {{ post.created_at|naturaltime }}</small><br>
@@ -51,7 +62,8 @@
 
     <h2><a href="{% url 'posts:category' 'freshman' %}">새내기게시판</a></h2>
     <ul>
-        {% for post in freshman_posts %}
+
+        {% for post in freshman_posts|slice:":3" %}
             <li>
                 <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
                 <small> {{ post.created_at|naturaltime }}</small><br>
@@ -66,7 +78,7 @@
 
     <h2><a href="{% url 'posts:category' 'free' %}">자유게시판</a></h2>
     <ul>
-        {% for post in free_posts %}
+        {% for post in free_posts|slice:":3" %}
             <li>
                 <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
                 <small> {{ post.created_at|naturaltime }}</small><br>
@@ -76,3 +88,15 @@
             <li>게시글이 없습니다.</li>
         {% endfor %}
     </ul>
+
+    <!-- 추가된 하단 링크 섹션 -->
+    <div class="footer-links-container">
+        <a href="https://www.duksung.ac.kr/" target="_blank">학교 홈페이지</a>
+        <a href="https://lms.duksung.ac.kr/login.php" target="_blank">E-class</a>
+        <a href="https://www.duksung.ac.kr/academic/calendar.do?acsIdx=1&menuId=1116" target="_blank">학사일정</a>
+        <a href="https://discover.duksung.ac.kr/#/" target="_blank">도서관</a>
+    </div>
+
+
+</body>
+</html>

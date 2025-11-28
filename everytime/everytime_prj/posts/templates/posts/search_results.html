@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합 검색 결과</title>
+    <!-- MyPostPage와 동일한 CSS 파일을 사용. -->
+    <link rel="stylesheet" href="{% static 'css/MyPostPage.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/SearchForm.css'%}" />
+</head>
+<body>
+    <a href="{% url 'posts:main' %}">홈으로</a>
+    
+    <form class="search-form" method="GET" action="{% url 'posts:search' %}">
+        <input type="search" name="q" placeholder="제목이나 내용을 검색하세요" value="{{ query|default_if_none:'' }}" required>
+        <button type="submit">검색</button>
+    </form>
+    
+    <!-- 검색 결과 제목 -->
+    <h1>'{{ query }}' 검색 결과</h1>
+    <br><hr><br>
+
+    {% load humanize %}
+    
+    <!-- 💡 게시글 목록 반복 -->
+    {% for post in search_results %}
+        <!-- 게시글 제목 (상세 페이지 링크) -->
+        <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
+        
+        <div class="post-content-group"> 
+            <p>{{ post.content|truncatechars:150 }}</p> 
+            <p>{{ post.created_at }} | {% if post.is_anonymous %}익명{% else %}{{ post.author.nickname }}{% endif %}</p>
+            <small>게시판: {{ post.category.name }}</small>
+        </div>
+        <hr>
+    {% empty %}
+        <!-- 검색 결과가 없을 때 -->
+        <p>죄송합니다. '{{ query }}'와 일치하는 검색 결과가 없습니다.</p>
+    {% endfor %}
+
+</body>
+</html>
